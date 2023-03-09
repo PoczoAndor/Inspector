@@ -15,20 +15,30 @@ namespace Inspector
     {
         public void get_all_measurements(string path)
         {
-            using (StreamWriter writer = new StreamWriter("C:\\Coding Projects\\Inspector\\Inspector\\Files\\Path_of_measurements.txt"))
+            using (StreamWriter writer = new StreamWriter(".\\Path_of_measurements.txt"))
             {
                 writer.WriteLine(path);
             }
         }
         public void create_list_all_measurements()
         {
-            StreamReader path_of_all_measurements = new StreamReader("C:\\Coding Projects\\Inspector\\Inspector\\Files\\Path_of_measurements.txt");
+            StreamReader path_of_all_measurements = new StreamReader(".\\Path_of_measurements.txt");
             string measurements_path = path_of_all_measurements.ReadLine();
             string[] measurements = Directory.GetFiles(@measurements_path, "*.XLSX", SearchOption.AllDirectories);
-            foreach (string file in measurements) 
+            int measurements_lenght= measurements.Length;
+            int loop=0;
+            System.IO.File.Delete(".\\List_of_all_measurements.txt");
+            while (loop != measurements_lenght) 
             {
-                Console.WriteLine(file);
+                using (StreamWriter writer = new StreamWriter(".\\List_of_all_measurements.txt",true))
+                {
+                    writer.WriteLine(measurements[loop]);
+                    writer.Close();
+                }
+                loop++;
             }
+                
+            
         }
     }
 }
