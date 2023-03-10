@@ -37,9 +37,8 @@ namespace Inspector
                 }
                 loop++;
             }
-                
-            
         }
-    }
+
+     }
 }
     
